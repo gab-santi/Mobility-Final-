@@ -113,7 +113,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:id="@+id/bt_trackpad"
-                    android:backgroundTint="#ff5722"
+                    android:backgroundTint="@color/colorPrimary"
                     android:src="@drawable/ic_trackpad"
                     android:scaleType="fitCenter"
                     android:elevation="5dp"/>
@@ -140,7 +140,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:id="@+id/bt_keyboard"
-                    android:backgroundTint="#ff5722"
+                    android:backgroundTint="@color/colorPrimary"
                     android:src="@drawable/ic_keyboard"
                     android:scaleType="fitCenter"
                     android:elevation="5dp"/>
@@ -165,7 +165,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:id="@+id/bt_presenter"
-                    android:backgroundTint="#ff5722"
+                    android:backgroundTint="@color/colorPrimary"
                     android:src="@drawable/ic_slideshow"
                     android:scaleType="fitCenter"
                     android:elevation="5dp"/>
@@ -180,8 +180,50 @@
 
             </LinearLayout>
 
+
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SELECT SKIN"
+            android:padding="10dp"
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"
+            android:paddingStart="15dp"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="9dp"
+
+            android:weightSum="3">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Default"
+                android:checked="true"
+                android:textColor="#757575"
+                android:id="@+id/rb_default"
+                android:layout_weight="1"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dark"
+                android:textColor="#757575"
+                android:id="@+id/rb_dark"
+                android:layout_weight="1"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Light"
+                android:textColor="#757575"
+                android:id="@+id/rb_light"
+                android:layout_weight="1"/>
+        </RadioGroup>
     </LinearLayout>
+
 
 
 </LinearLayout>

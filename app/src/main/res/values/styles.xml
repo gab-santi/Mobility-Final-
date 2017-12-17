@@ -8,6 +8,9 @@
         <item name="colorAccent">@android:color/holo_blue_light</item>
     </style>
 
+    <style name="LightTheme" parent="@android:style/Theme.Material.Light"></style>
+    <style name="DarkTheme" parent="@android:style/ThemeOverlay.Material.Dark"></style>
+
     <style name="Mobility" parent="AppTheme" />
 
 </resources>

@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.gab.mobility_final.Keyboard">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Not connected to any computer."
+        android:textAlignment="center"
+        android:background="#0fb700"
+        android:textColor="#FFFFFF"
+        android:id="@+id/tv_status"/>
 
     <TextView
         android:layout_width="match_parent"

@@ -1,11 +1,13 @@
 package com.example.gab.mobility_final;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnRightClick;
     TextView mouseArea;
     String ip;
+
 
     float initx = 0;
     float inity = 0;
@@ -98,6 +101,14 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), SelectActivity.class);
+        startActivityForResult(myIntent, 0);
+        return true;
+
     }
 
     public void send(View v, String message, String ip_address) {

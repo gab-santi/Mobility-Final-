@@ -10,9 +10,11 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class Keyboard extends AppCompatActivity {
 
+    TextView status;
     EditText et_input;
 
     @Override
@@ -22,7 +24,13 @@ public class Keyboard extends AppCompatActivity {
         final String ip = getIntent().getExtras().getString("ip");
 
         // init
+        status = (TextView) findViewById(R.id.tv_status);
         et_input = (EditText) findViewById(R.id.et_input);
+
+
+        // set connection status
+        status.setText("Connected to " + ip);
+
         et_input.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

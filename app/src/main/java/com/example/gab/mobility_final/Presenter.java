@@ -4,11 +4,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class Presenter extends AppCompatActivity {
 
     Button bt_prev;
     Button bt_next;
+    TextView status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +22,12 @@ public class Presenter extends AppCompatActivity {
         // init
         bt_prev = (Button) findViewById(R.id.bt_prev);
         bt_next = (Button) findViewById(R.id.bt_next);
+
+        // init
+        status = (TextView) findViewById(R.id.tv_status);
+
+        // set connection status
+        status.setText("Connected to " + ip);
 
         bt_prev.setOnClickListener(new View.OnClickListener() {
             @Override
