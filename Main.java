@@ -1,19 +1,16 @@
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.awt.*;
+import java.io.*;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
-import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.awt.Robot;
 import java.awt.event.InputEvent;
-import java.awt.MouseInfo;
-import java.awt.Point;
 import java.net.InetAddress;
 
 public class Main {
     // Sockets
-    static Socket s;
+    static Socket s, as;
+    static PrintWriter pw;
     static ServerSocket ss;
     static InputStreamReader isr;
     static BufferedReader br;
@@ -26,6 +23,13 @@ public class Main {
     float disy = 0;
 
     public static void main(String[] args) {
+        boolean isConnected = false;
+        String ip_address = "";
+        try {
+            ip_address = InetAddress.getLocalHost().getHostAddress();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         System.out.println("Starting the server...");
         try {
@@ -33,30 +37,51 @@ public class Main {
             ss = new ServerSocket(8080);
             System.out.println("Server has started! Accepting connections.");
 
-            // Make the window
+            /* ----------------
+            ** SWING COMPONENTS
+            ** --------------*/
             JFrame frame = new JFrame("Mobility Connect");
-            frame.setSize(300, 100);
+            frame.setSize(400, 100);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-            JLabel serverStatus = new JLabel("Connect your phone to " + InetAddress.getLocalHost().getHostAddress());
+            // TODO: Add disconnected icon to the Frame here
+
+            JLabel serverStatus = new JLabel("Connect your phone to " + ip_address);
             frame.add(serverStatus);
 
-            frame.setVisible(true);    
+            frame.setVisible(true);
+
             // If the socket was started
             while (true) {
                 // Accept a packet
                 s = ss.accept();
                 if (s != null) {
-                    System.out.println("Packet received!");
+                    System.out.println("[SERVER] Packet received!");
                 }
 
                 // Read the line
                 isr = new InputStreamReader(s.getInputStream());
                 br = new BufferedReader(isr);
                 message = br.readLine();
+                System.out.println("[" + ip_address + "] MESSAGE: " + message);
 
-                // Print the message
-                System.out.println("Message recevied: " + message);
+                // Toggle connected status if needed
+                if (!isConnected) {
+                    if (message.equals("connect")) {
+                        serverStatus.setText("Connected to phone with IP Address " + ip_address);
+                        // TODO: Change the icon here
+
+                        isConnected = true;
+                    }
+                }
+                if (isConnected) {
+                    if (message.equals("disconnect")) {
+                        serverStatus.setText("Connect your phone to " + ip_address);
+                        // TODO: Change the icon here
+
+                        isConnected = false;
+                    }
+                }
 
                 // parse message
                 messageEvent(message);
@@ -106,9 +131,9 @@ public class Main {
                 if (Character.isUpperCase(c)) {
                     bot.keyRelease(KeyEvent.VK_SHIFT);
                 }
-            } 
+            }
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 }
