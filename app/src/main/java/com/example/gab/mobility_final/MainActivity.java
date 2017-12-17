@@ -47,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
         btnLeftClick = (Button) findViewById(R.id.leftClick);
         btnRightClick = (Button) findViewById(R.id.rightClick);
         mouseArea = (TextView) findViewById(R.id.mouseArea);
+
         ip = getIntent().getExtras().getString("ip");
+
 
         //send(null, "Phone connect", ip);
 
@@ -111,8 +113,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(getApplicationContext(), SelectActivity.class);
+        Intent myIntent = new Intent(getApplicationContext(), IPActivity.class);
         startActivityForResult(myIntent, 0);
+        send(null, "disconnect", ip);
         return true;
 
     }

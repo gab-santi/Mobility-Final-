@@ -60,23 +60,28 @@
             android:orientation="vertical"
             android:gravity="center">
 
+            <ImageView
+                android:layout_width="170sp"
+                android:layout_height="170sp"
+                android:src="@drawable/web_hi_res_512_orange"
+                android:paddingTop="10dp"
+                />
+
             <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Enter your PC's IP Address to connect!"
             android:textColor="#fff"
             android:textAlignment="center"
-            android:paddingTop="0dp"
-            android:textSize="18sp"
-            android:shadowColor="#000"
-                android:shadowDy="-5"
-                android:shadowRadius="5"/>
+            android:paddingTop="30dp"
+            android:textSize="18sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Make sure that the desktop app is running"
+                android:text="Make sure that the desktop app is running\nand both the PC and phone are connected to the\nsame access point."
                 android:textColor="#fff"
+                android:paddingTop="10dp"
                 android:textAlignment="center"/>
             
             <EditText
@@ -84,10 +89,11 @@
                 android:layout_height="wrap_content"
                 android:hint="000.000.000.000"
                 android:backgroundTint="#fff"
+                android:textAlignment="center"
                 android:textColorHint="#fff"
                 android:textColor="#fff"
                 android:id="@+id/et_ip"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="50dp"
                android:layout_gravity="center"/>
 
             <Button

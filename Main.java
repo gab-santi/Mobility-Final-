@@ -2,6 +2,7 @@ import java.awt.*;
 import java.io.*;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
+import java.net.URL;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.awt.event.InputEvent;
@@ -41,14 +42,58 @@ public class Main {
             ** SWING COMPONENTS
             ** --------------*/
             JFrame frame = new JFrame("Mobility Connect");
-            frame.setSize(400, 100);
+            frame.setSize(400, 300);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setResizable(false);
+            
+            URL iconURL = Main.class.getResource("web_hi_res_512_orange.png");
+            URL logoURL = Main.class.getResource("web_hi_res_512_white.png");
+
+			// iconURL is null when not found
+			ImageIcon icon = new ImageIcon(iconURL);
+			frame.setIconImage(icon.getImage());
+
+            JPanel contentPane = new JPanel();
+            contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+            contentPane.setBackground(Color.decode("#ff5722"));
+
+            ImageIcon logo = new ImageIcon(logoURL);
+
+            Image image = logo.getImage(); // transform it 
+			Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_AREA_AVERAGING); // scale it the smooth way  
+			logo = new ImageIcon(newimg); 
+            JLabel logoLabel = new JLabel(logo, JLabel.CENTER);
+            logoLabel.setSize(60, 60);
+            logoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            contentPane.add(logoLabel);
 
             // TODO: Add disconnected icon to the Frame here
 
-            JLabel serverStatus = new JLabel("Connect your phone to " + ip_address);
-            frame.add(serverStatus);
+            JLabel title = new JLabel("Mobility");
+            title.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            title.setForeground(Color.white);
+            title.setAlignmentX(Component.CENTER_ALIGNMENT);
+            contentPane.add(title);
 
+            JLabel info = new JLabel("Your IP address is:");
+            info.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            info.setForeground(Color.white);
+            info.setAlignmentX(Component.CENTER_ALIGNMENT);
+            contentPane.add(info);
+
+            JLabel ip = new JLabel(ip_address);
+            ip.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            ip.setForeground(Color.white);
+            ip.setAlignmentX(Component.CENTER_ALIGNMENT);
+           	contentPane.add(ip);
+
+            JLabel serverStatus = new JLabel("No phone connected.");
+            serverStatus.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            serverStatus.setForeground(Color.white);
+            serverStatus.setAlignmentX(Component.CENTER_ALIGNMENT);
+            contentPane.add(serverStatus);
+
+            frame.add(contentPane);
             frame.setVisible(true);
 
             // If the socket was started
@@ -68,7 +113,7 @@ public class Main {
                 // Toggle connected status if needed
                 if (!isConnected) {
                     if (message.equals("connect")) {
-                        serverStatus.setText("Connected to phone with IP Address " + ip_address);
+                        serverStatus.setText("Phone connected.");
                         // TODO: Change the icon here
 
                         isConnected = true;
@@ -76,7 +121,7 @@ public class Main {
                 }
                 if (isConnected) {
                     if (message.equals("disconnect")) {
-                        serverStatus.setText("Connect your phone to " + ip_address);
+                        serverStatus.setText("No phone connected.");
                         // TODO: Change the icon here
 
                         isConnected = false;
@@ -120,6 +165,12 @@ public class Main {
             } else if (message.equals("nxt")) { // presenter - next
                 bot.keyPress(KeyEvent.VK_RIGHT);
                 bot.keyRelease(KeyEvent.VK_RIGHT);
+            } else if (message.equals("bsp")) { //backspace key
+            	bot.keyPress(KeyEvent.VK_BACK_SPACE);
+            	bot.keyRelease(KeyEvent.VK_BACK_SPACE);
+            } else if (message.equals("ent")) {
+            	bot.keyPress(KeyEvent.VK_ENTER);
+            	bot.keyRelease(KeyEvent.VK_ENTER);
             } else {
                 char c = message.charAt(0);
                 if (Character.isUpperCase(c)) {

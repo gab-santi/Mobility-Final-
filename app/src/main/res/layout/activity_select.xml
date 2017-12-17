@@ -183,6 +183,7 @@
 
         </LinearLayout>
 
+        <!--
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -191,37 +192,8 @@
             android:textSize="15sp"
             android:layout_marginTop="20dp"
             android:paddingStart="15dp"/>
+        -->
 
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="9dp"
-
-            android:weightSum="3">
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Default"
-                android:checked="true"
-                android:textColor="#757575"
-                android:id="@+id/rb_default"
-                android:layout_weight="1"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dark"
-                android:textColor="#757575"
-                android:id="@+id/rb_dark"
-                android:layout_weight="1"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Light"
-                android:textColor="#757575"
-                android:id="@+id/rb_light"
-                android:layout_weight="1"/>
-        </RadioGroup>
     </LinearLayout>
 
 

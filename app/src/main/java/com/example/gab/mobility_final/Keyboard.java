@@ -7,8 +7,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,16 +20,21 @@ public class Keyboard extends AppCompatActivity {
 
     TextView status;
     EditText et_input;
+    String ip;
+    Button bt_bckspc;
+    Button bt_enter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keyboard);
-        final String ip = getIntent().getExtras().getString("ip");
 
         // init
         status = (TextView) findViewById(R.id.tv_status);
         et_input = (EditText) findViewById(R.id.et_input);
+        ip = getIntent().getExtras().getString("ip");
+        bt_bckspc = (Button) findViewById(R.id.btn_bspc);
+        bt_enter = (Button) findViewById(R.id.btn_enter);
 
 
         // set connection status
@@ -61,8 +70,36 @@ public class Keyboard extends AppCompatActivity {
         InputMethodManager imm = ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE));
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 
+        bt_bckspc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                send(null, "bsp", ip);
+            }
+        });
+
+        bt_enter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                send(null, "ent", ip);
+            }
+        });
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), IPActivity.class);
+        startActivityForResult(myIntent, 0);
+        send(null, "disconnect", ip);
+        return true;
 
     }
 

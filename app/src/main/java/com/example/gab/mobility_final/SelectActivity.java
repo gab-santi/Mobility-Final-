@@ -19,9 +19,6 @@ public class SelectActivity extends AppCompatActivity {
     ImageButton bt_keyboard;
     ImageButton bt_presenter;
     TextView tv_ip;
-    RadioButton rb_default;
-    RadioButton rb_dark;
-    RadioButton rb_light;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +35,6 @@ public class SelectActivity extends AppCompatActivity {
         bt_keyboard = (ImageButton) findViewById(R.id.bt_keyboard);
         bt_presenter = (ImageButton) findViewById(R.id.bt_presenter);
         tv_ip = (TextView) findViewById(R.id.tv_ipAddress);
-        rb_default = (RadioButton) findViewById(R.id.rb_default);
-        rb_dark = (RadioButton) findViewById(R.id.rb_dark);
-        rb_light = (RadioButton) findViewById(R.id.rb_light);
 
         tv_ip.setText(ip);
 
@@ -82,36 +76,6 @@ public class SelectActivity extends AppCompatActivity {
                 i.setClass(getBaseContext(), Presenter.class);
                 i.putExtra("ip", ip);
                 startActivity(i);
-            }
-        });
-
-        rb_default.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean isClicked = ((RadioButton) view).isChecked();
-
-                if (isClicked)
-                    setTheme(R.style.Mobility);
-            }
-        });
-
-        rb_dark.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean isClicked = ((RadioButton) view).isChecked();
-
-                if (isClicked)
-                    setTheme(R.style.DarkTheme);
-            }
-        });
-
-        rb_light.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean isClicked = ((RadioButton) view).isChecked();
-
-                if (isClicked)
-                    setTheme(R.style.LightTheme);
             }
         });
     }

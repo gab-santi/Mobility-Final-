@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Mobility_Final.iml" filepath="$PROJECT_DIR$/Mobility_Final.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mobility-Final-.iml" filepath="$PROJECT_DIR$/Mobility-Final-.iml" />
+      <module fileurl="file://C:\Users\Gab Santiago\Documents\GitHub\Mobility-Final-\Mobility_Final.iml" filepath="C:\Users\Gab Santiago\Documents\GitHub\Mobility-Final-\Mobility_Final.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Gab Santiago\Documents\GitHub\Mobility-Final-\app\app.iml" filepath="C:\Users\Gab Santiago\Documents\GitHub\Mobility-Final-\app\app.iml" />
     </modules>
   </component>
 </project>

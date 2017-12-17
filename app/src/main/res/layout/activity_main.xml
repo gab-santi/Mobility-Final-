@@ -44,6 +44,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Left click"
+            android:textColor="#FFF"
             android:id="@+id/leftClick"
             android:backgroundTint="@color/colorPrimary"/>
 
@@ -52,6 +53,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Right click"
+            android:textColor="#FFF"
             android:id="@+id/rightClick"
             android:backgroundTint="@color/colorPrimary"/>
     </LinearLayout>

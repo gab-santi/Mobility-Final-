@@ -1,7 +1,11 @@
 package com.example.gab.mobility_final;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,16 +16,18 @@ public class Presenter extends AppCompatActivity {
     Button bt_prev;
     Button bt_next;
     TextView status;
+    String ip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_presenter);
-        final String ip = getIntent().getExtras().getString("ip");
+
 
         // init
         bt_prev = (Button) findViewById(R.id.bt_prev);
         bt_next = (Button) findViewById(R.id.bt_next);
+        ip = getIntent().getExtras().getString("ip");
 
         // init
         status = (TextView) findViewById(R.id.tv_status);
@@ -42,6 +48,22 @@ public class Presenter extends AppCompatActivity {
                 send(null, "nxt", ip);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), IPActivity.class);
+        startActivityForResult(myIntent, 0);
+        send(null, "diconnect", ip);
+        return true;
+
     }
 
     public void send(View v, String message, String ip_address) {
