@@ -2,9 +2,13 @@ package com.example.gab.mobility_final;
 
 import android.os.AsyncTask;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.Buffer;
 
 /*
 ** IMPORTANT!!
@@ -13,14 +17,14 @@ import java.net.Socket;
 ** for this to work!
  */
 
-public class MessageSender extends AsyncTask<String, Void, Void> {
+public class MessageSender extends AsyncTask<String, Void, Integer> {
     // Sockets and Streams
-    Socket s;
+    Socket s, as;
     PrintWriter pw;
 
-    // This recevies all parameters from the .execute() method in MainActivity
+    // This receives all parameters from the .execute() method in MainActivity
     @Override
-    protected Void doInBackground(String... params) {
+    protected Integer doInBackground(String... params) {
         // Get the message
         String message = params[0];
         String ip_address = params[1];
@@ -32,6 +36,7 @@ public class MessageSender extends AsyncTask<String, Void, Void> {
 
             // The message is sent to the server via the socket
             pw.write(message);
+            System.out.println("[MessageSender] Message " + message + " has been sent!");
 
             // Flush and close to avoid errors
             pw.flush();

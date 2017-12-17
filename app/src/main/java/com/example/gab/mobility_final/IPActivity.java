@@ -42,7 +42,9 @@ public class IPActivity extends AppCompatActivity {
                     Intent i = new Intent();
                     i.setClass(getBaseContext(), SelectActivity.class);
                     i.putExtra("ip", et_ip.getText().toString());
-                    send(null, "con", et_ip.getText().toString());
+
+                    // Send both the connect message and the IP Address as a comma separated value
+                    send(null, "connect", et_ip.getText().toString());
                     startActivity(i);
                 }
 

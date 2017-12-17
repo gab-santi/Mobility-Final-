@@ -49,6 +49,8 @@ public class SelectActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent();
                 i.setClass(getBaseContext(), IPActivity.class);
+                // Send a disconnect message to the desktop app
+                send(null, "disconnect", ip);
                 startActivity(i);
             }
         });

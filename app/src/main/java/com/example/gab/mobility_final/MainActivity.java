@@ -14,6 +14,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 public class MainActivity extends AppCompatActivity {
     // widgets
     TextView status;
@@ -43,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         mouseArea = (TextView) findViewById(R.id.mouseArea);
         ip = getIntent().getExtras().getString("ip");
 
-        send(null, "Phone connect", ip);
+        //send(null, "Phone connect", ip);
 
         // set connection status
         status.setText("Connected to " + ip);
@@ -113,11 +119,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void send(View v, String message, String ip_address) {
         // Get the string message
-        System.out.println("Message sent: \"" + message + "\" to IP Address [" + ip_address + "]");
+        System.out.println("[Send, Activity] Message sent: \"" + message + "\" to IP Address [" + ip_address + "]");
 
-        // Send the message using the MessageSender AsyncTask class
-        // the parameters of .execute() is passed to the doInBackground() method in MessageSender
-        // message is parameter 0, ip_address is now parameter 1
+        // Send message
         MessageSender messageSender = new MessageSender();
         messageSender.execute(message, ip_address);
     }
