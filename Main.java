@@ -46,8 +46,8 @@ public class Main {
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.setResizable(false);
             
-            URL iconURL = Main.class.getResource("web_hi_res_512_orange.png");
-            URL logoURL = Main.class.getResource("web_hi_res_512_white.png");
+            URL iconURL = Main.class.getResource("/resources/img/web_hi_res_512_orange.png");
+            URL logoURL = Main.class.getResource("/resources/img/web_hi_res_512_white.png");
 
 			// iconURL is null when not found
 			ImageIcon icon = new ImageIcon(iconURL);
